@@ -1,4 +1,6 @@
+#!/usr/bin/python
+
 import os
 import sys
 
-workingdir = os.getcwd()
+
