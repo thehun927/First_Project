@@ -4,7 +4,7 @@ First_Project
 
 Trying to make a virus scanner PYTHON
 
-This is my first time using Python 3.2
+This is my first time using Python 2
 I am trying to make a virus scanner.
 
 The idea is to scan files and folders in a directory 
