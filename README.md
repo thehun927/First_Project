@@ -2,7 +2,7 @@ First_Project
 3/18/14
 =============
 
-Trying to make a virus scanner PYTHON
+Trying to make a virus scanner in PYTHON
 
 This is my first time using Python 2
 I am trying to make a virus scanner.
