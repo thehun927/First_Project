@@ -3,6 +3,7 @@
 import csv
 import sys
 import os
+import time
 import hashlib
 
 #path = "/home/attila/GitHub"
@@ -16,7 +17,9 @@ workingdir = os.getcwd()
 
 print "Directory changed successfully to %s" % workingdir
 
-for root, dirs, files in os.walk(onerror=None, topdown=True, followlinks=False):
+time.sleep(2)
+
+for root, dirs, files in os.walk(path,onerror=None, topdown=True, followlinks=False):
     for name in files:
         print(os.path.join(root, name))
     for name in dirs:
