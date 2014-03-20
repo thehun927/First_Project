@@ -1,6 +1,6 @@
 import hashlib
 
-filepath = "/home/attila/Pictures/images.jpg"
+filePath = "/home/attila/Pictures/images (1).jpg"
 
 def md5Checksum(filePath):
     with open(filePath, 'rb') as fh:
@@ -11,6 +11,6 @@ def md5Checksum(filePath):
                 break
             m.update(data)
         return m.hexdigest()
-
-print('The MD5 checksum of the file is', md5Checksum(filepath))
+print(filePath)
+print('The MD5 checksum of the file is', md5Checksum(filePath))
 
