@@ -17,19 +17,22 @@ def md5Checksum(filePath):
         return m.hexdigest()
 
 #path = "/home/attila/GitHub"
-log = "/home/attila/Documents/GitHub/PY-Virus-Scanner/log.txt"
 md5 = hashlib.md5()
-path = raw_input("Enter a directory: ")
 workingdir = os.getcwd()
+log = "/home/attila/Desktop"
+path = raw_input("Enter a directory to scan: ")
 print "Current working directory %s" % workingdir
 
 os.chdir(path)
 
-workingdir = os.getcwd()
-
 print "Directory changed successfully to %s" % workingdir
 
-#time.sleep(2)
+print "Starting in 3.."
+time.sleep(1)
+print "2.."
+time.sleep(1)
+print "1.."
+time.sleep(1)
 
 with open(log, 'w') as F:
     for root, dirs, files in os.walk(path,onerror=None, topdown=True, followlinks=False):
