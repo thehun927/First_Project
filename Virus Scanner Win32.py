@@ -23,7 +23,7 @@ path = raw_input("Enter a directory: ")
 workingdir = os.getcwd()
 print "Current working directory %s" % workingdir
 
-os.chdir( path )
+os.chdir(path)
 
 workingdir = os.getcwd()
 
@@ -35,9 +35,8 @@ with open(log, 'w') as F:
     for root, dirs, files in os.walk(path,onerror=None, topdown=True, followlinks=False):
         for name in files:
             print(os.path.join(root, name))
-            F.write(str(name) + '\n')
-#           print >> log.txt
+            F.write(str(os.path.join(root, name)))
+            F.write(str('\n'))
         for name in dirs:
             print(os.path.join(root, name))
-            F.write(str(name) + '\n')
-#           print >> log.txt
+            F.write(str(os.path.join(root, name)))
