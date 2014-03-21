@@ -42,12 +42,7 @@ with open(log, 'w') as F:
             F.write(str(os.path.join(root, name)))
             F.write(str('\n'))
 
-with open(log) as F:
-    for line in F:
-        while True:
-            data = F.read()
-            if not data:
-                break
-            md5.update(data)
-        print(md5.hexdigest())
-
+F = open(log).read().splitlines()
+for line in F:
+    md5Checksum(line)
+    print("The MD5 Checksum of the file is ", md5Checksum(line))
