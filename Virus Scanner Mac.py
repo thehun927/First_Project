@@ -5,6 +5,7 @@ import sys
 import os
 import time
 import hashlib
+import difflib
 
 def md5Checksum(filePath):
     with open(filePath, 'rb') as fh:
@@ -20,6 +21,7 @@ def md5Checksum(filePath):
 md5 = hashlib.md5()
 
 log = "/Users/attila/Desktop/log.txt"
+Mlog = "/Users/attila/Desktop/Mlog.txt"
 
 print "Current working directory %s" % os.getcwd()
 path = raw_input("Enter a directory to scan: ")
@@ -44,7 +46,16 @@ with open(log, 'w') as F:
             F.write(str('\n'))
 
 
-F = open(log).read().splitlines()
-for line in F:
-    md5Checksum(line)
-    print("The MD5 Checksum of the file is ", md5Checksum(line))
+
+with open(Mlog, 'w') as FM:
+    FM.write("MD5 HASHES SCANNED FROM DIRECTORY \n\n")
+    F = open(log).read().splitlines()
+    for line in F:
+        md5Checksum(line)
+#        print("The MD5 Checksum of the file is ", md5Checksum(line))
+        FM.write(md5Checksum(line))
+        FM.write(str('\n'))
+
+
+
+
