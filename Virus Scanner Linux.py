@@ -18,13 +18,14 @@ def md5Checksum(filePath):
 
 #path = "/home/attila/GitHub"
 md5 = hashlib.md5()
-workingdir = os.getcwd()
-log = "/home/attila/Desktop"
+
+log = "/home/attila/Desktop/log.txt"
+
+print "Current working directory %s" % os.getcwd()
 path = raw_input("Enter a directory to scan: ")
-print "Current working directory %s" % workingdir
 
 os.chdir(path)
-
+workingdir = os.getcwd()
 print "Directory changed successfully to %s" % workingdir
 
 print "Starting in 3.."
