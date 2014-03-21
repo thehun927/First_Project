@@ -1,9 +1,15 @@
 #!/usr/bin/python
 
-import os
+import csv
 import sys
+import os
+import time
+import hashlib
 
-path = "C:/Users/Owner/Desktop"
+#path = "/home/attila/GitHub"
+log = "C:/Users/Owner/Documents/GitHub/PY-Virus-Scanner/log.txt"
+md5 = hashlib.md5()
+path = raw_input("Enter a directory: ")
 workingdir = os.getcwd()
 print "Current working directory %s" % workingdir
 
@@ -13,14 +19,16 @@ workingdir = os.getcwd()
 
 print "Directory changed successfully to %s" % workingdir
 
-for root, dirs, files in os.walk(".", followlinks=False):
-    for name in files:
-        print(os.path.join(root, name))
-    for name in dirs:
-        print(os.path.join(root, name))
+#time.sleep(2)
 
-
-
-
-
+with open(log, 'w') as F:
+    for root, dirs, files in os.walk(path,onerror=None, topdown=True, followlinks=False):
+        for name in files:
+            print(os.path.join(root, name))
+            F.write(str(name) + '\n')
+#           print >> log.txt
+        for name in dirs:
+            print(os.path.join(root, name))
+            F.write(str(name) + '\n')
+#           print >> log.txt
 
