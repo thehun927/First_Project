@@ -34,9 +34,20 @@ print "Directory changed successfully to %s" % workingdir
 with open(log, 'w') as F:
     for root, dirs, files in os.walk(path,onerror=None, topdown=True, followlinks=False):
         for name in files:
-            print(os.path.join(root, name))
+#            print(os.path.join(root, name))
             F.write(str(os.path.join(root, name)))
             F.write(str('\n'))
         for name in dirs:
-            print(os.path.join(root, name))
+#            print(os.path.join(root, name))
             F.write(str(os.path.join(root, name)))
+            F.write(str('\n'))
+
+with open(log) as F:
+    for line in F:
+        while True:
+            data = F.read()
+            if not data:
+                break
+            md5.update(data)
+        print(md5.hexdigest())
+
