@@ -42,10 +42,7 @@ with open(log, 'w') as F:
 #            print(os.path.join(root, name))
             F.write(str(os.path.join(root, name)))
             F.write(str('\n'))
-        for name in dirs:
-#            print(os.path.join(root, name))
-            F.write(str(os.path.join(root, name)))
-            F.write(str('\n'))
+
 
 F = open(log).read().splitlines()
 for line in F:

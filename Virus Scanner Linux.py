@@ -26,6 +26,7 @@ path = raw_input("Enter a directory to scan: ")
 
 os.chdir(path)
 workingdir = os.getcwd()
+
 print "Directory changed successfully to %s" % workingdir
 
 print "Starting in 3.."
@@ -41,10 +42,7 @@ with open(log, 'w') as F:
 #            print(os.path.join(root, name))
             F.write(str(os.path.join(root, name)))
             F.write(str('\n'))
-        for name in dirs:
-#            print(os.path.join(root, name))
-            F.write(str(os.path.join(root, name)))
-            F.write(str('\n'))
+
 
 F = open(log).read().splitlines()
 for line in F:
