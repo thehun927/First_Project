@@ -6,6 +6,8 @@ import os
 import time
 import hashlib
 import difflib
+from progressbar \
+    import Bar,  ETA, ProgressBar, ReverseBar
 
 def md5Checksum(filePath):                      #Function to generate MD5 Hash
     with open(filePath, 'rb') as fh:
@@ -41,12 +43,16 @@ print "Directory changed successfully to %s" % workingdir       #Prints the chan
 
 countdown()     #Countdown function
 
+
+
 with open(log, 'w') as F:       #Open log file
     for root, dirs, files in os.walk(path,onerror=None, topdown=True, followlinks=False):   #Scan directories and files in the path variable
+        counter = 0
         for name in files:                          #For every file name in files scanned
-#            print(os.path.join(root, name))
             F.write(str(os.path.join(root, name)))          #Write the path and name of the file
             F.write(str('\n'))                              #New line
+            counter += 1
+        print(counter)
 
 with open(Mlog, 'w') as FM:                 #Open MD5 Log File
     FM.write("MD5 HASHES SCANNED FROM DIRECTORY \n\n")      #Add title
