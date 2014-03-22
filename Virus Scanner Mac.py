@@ -27,11 +27,16 @@ def countdown():
     print "1.."
     time.sleep(1)
 
+def backwardsBar():
+    widgets = [Bar('>'), ' ', ETA(), ' ', ReverseBar('<')]
+    pbar = ProgressBar(widgets=widgets, maxval=10000000).start()
+    for i in range(1000000):
+        # do something
+        pbar.update(10*i+1)
+    pbar.finish()
+
 md5 = hashlib.md5()
-log = "/Users/attila/Desktop/log.txt"
-Mlog = "/Users/attila/Desktop/Mlog.txt"
 Vlog = "/Users/attila/Desktop/Vlog.txt"
-Output = "/Users/attila/Desktop/Output.txt"
 
 print "Current working directory %s" % os.getcwd()      #Prints the current working directory for reference
 path = raw_input("Enter a directory to scan: ")         #Custom directory scanning
@@ -41,31 +46,22 @@ workingdir = os.getcwd()                   #set workingdir to the cwd
 
 print "Directory changed successfully to %s" % workingdir       #Prints the changed directory for reference
 
-countdown()     #Countdown function
+#countdown()     #Countdown function
+#backwardsBar()
 
+seq = []
+for root, dirs, files in os.walk(path,onerror=None, topdown=True, followlinks=False):   #Scan directories and files in the path variable
+    for name in files:                          #For every file name in files scanned
+        seq.append(str(os.path.join(root, name)))          #Write the path and name of the file
+        #seq.append(str('\n'))
 
+md = []
+for item in seq:
+    md5Checksum(item)
+    md.append(md5Checksum(item))
+    #md.append('\n')
 
-with open(log, 'w') as F:       #Open log file
-    for root, dirs, files in os.walk(path,onerror=None, topdown=True, followlinks=False):   #Scan directories and files in the path variable
-        counter = 0
-        for name in files:                          #For every file name in files scanned
-            F.write(str(os.path.join(root, name)))          #Write the path and name of the file
-            F.write(str('\n'))                              #New line
-            counter += 1
-        print(counter)
+Vlist = [line.strip() for line in open(Vlog, 'r')]
 
-with open(Mlog, 'w') as FM:                 #Open MD5 Log File
-    FM.write("MD5 HASHES SCANNED FROM DIRECTORY \n\n")      #Add title
-    F = open(log).read().splitlines()                       #Open the first log and read each line
-    for line in F:                      #For every line in the first log
-        md5Checksum(line)                       #Generate an MD5 checksum
-        FM.write(line.rstrip('\n') + "\n" + md5Checksum(line) + "\n")           #Copy the direcotry and file name and put the hash under it
-        FM.write(str('\n'))                     #New line
-
-with open(Mlog, 'r') as M:              #Open MD5 Log file
-    with open(Vlog, 'r') as V:          #Open Log file with virus hashes
-        same = set(M).intersection(V)               #
-same.discard("\n")
-with open(Output, 'w') as FO:
-    for line in same:
-        FO.write(line)
+for index, item in enumerate(Vlist):
+    print index, item
